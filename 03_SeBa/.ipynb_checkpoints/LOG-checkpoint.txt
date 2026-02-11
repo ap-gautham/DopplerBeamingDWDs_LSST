@@ -1,0 +1,36 @@
+Search - dump("SeBa - on dstar/starclass/double_star.C
+Remove all the - dump("SeBa - lines
+
+Go to sstar/starclass/single_star.C and do the same
+
+This stops all output to SeBa.data
+
+Then go to SeBa.C and search for - dump("SeBa -
+
+There are 2 of them. Split them into 'input' and 'output'
+
+The SeBa output/input has also been modified in double_star.C file (funtcion -- void double_star::dump(ostream & s, bool brief))
+
+column 1 binary identity number 
+column 2 binary type
+column 3 time
+column 4 separation in Solar radii
+column 5 & 10 stellar identity number (either 0 or 1)
+column 6 & 11 star type
+column 7 & 12 stellar mass in Solar mass
+column 8 & 13 stellar radius in Solar radii
+column 9 & 14 log of effective temperature
+
+# MAKE SeBa
+make clean && make && cd dstar && make && cd ..
+
+---
+
+Jan 29
+
+"01" creates the coordinates and distances for binaries in the galaxy and creates shell scripts to simulate the binary evolution
+To generate SeBa binaries, run "sbatch 99_slurm/py_LSST_SeBa_GenerateSimulateDWDFormation.slurm.script"
+This uses the generated script to simulate binaries using SeBa and stores it scratch directory.
+Then notebook "02" collects the simulated result and creates a collection of binaries
+Then "03" distributes the binaries across the galaxy and assigns mock LSST photometry
+
